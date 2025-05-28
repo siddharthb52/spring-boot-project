@@ -1,0 +1,22 @@
+services:
+  db:
+    container_name: postgres-spring-boot
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: sb52
+      POSTGRES_PASSWORD: pass123hash
+      POSTGRES_DB: sidd
+      PGDATA: /data/postgres
+    volumes:
+      - db:/data/postgres
+    ports:
+      - "5332:5432" # To avoid conflicts with TCP connections on local
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+volumes:
+  db:
