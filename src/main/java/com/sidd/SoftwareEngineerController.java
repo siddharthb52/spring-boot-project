@@ -1,12 +1,11 @@
 package com.sidd;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/software-engineers")
+@RequestMapping("/api/v1/software-engineers")
 public class SoftwareEngineerController {
 
     private final SoftwareEngineerService softwareEngineerService;
@@ -19,4 +18,12 @@ public class SoftwareEngineerController {
     public List<SoftwareEngineer> getEngineers(){
         return softwareEngineerService.getAllSoftwareEngineers();
     }
+
+
+    @PostMapping
+    public void addNewSoftwareEngineer(@RequestBody SoftwareEngineer softwareEngineer) {
+        softwareEngineerService.insertSoftwareEngineer(softwareEngineer);
+    }
+
+
 }
